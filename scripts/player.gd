@@ -4,9 +4,13 @@ extends CharacterBody2D
 @export var walk_speed = 4.0
 const TILE_SIZE = 16
 
+# animations
 @onready var animation_tree = $AnimationTree
 @onready var anim_state = animation_tree.get("parameters/playback")
 @onready var animation_player = $AnimationPlayer
+
+# raycast
+@onready var ray_cast_2d = $RayCast2D
 
 
 # States
@@ -82,9 +86,17 @@ func need_to_turn():
 
 func move(delta):
 	percent_moved_to_next_tile += walk_speed * delta
-	if percent_moved_to_next_tile  >= 1.0:
-		position = initial_position + (TILE_SIZE * input_direction)
+	# Vector2 of the Next tile
+	var desired_step = input_direction * TILE_SIZE / 2
+	ray_cast_2d.target_position = desired_step
+	ray_cast_2d.force_raycast_update()
+	if !ray_cast_2d.is_colliding():
+		if percent_moved_to_next_tile  >= 1.0:
+			position = initial_position + (TILE_SIZE * input_direction)
+			percent_moved_to_next_tile = 0.0
+			is_moving = false
+		else:
+			position = initial_position + (TILE_SIZE * input_direction * percent_moved_to_next_tile)
+	else:
 		percent_moved_to_next_tile = 0.0
 		is_moving = false
-	else:
-		position = initial_position + (TILE_SIZE * input_direction * percent_moved_to_next_tile)
