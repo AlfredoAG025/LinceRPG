@@ -363,6 +363,10 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_5ktwt")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Idle/blend_position = Vector2(1.0116, -0.0304569)
+parameters/Idle/blend_position = Vector2(0, 1)
 parameters/Turn/blend_position = Vector2(0, 0)
 parameters/Walk/blend_position = Vector2(0, 0)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(8, 8)
+target_position = Vector2(0, 16)
