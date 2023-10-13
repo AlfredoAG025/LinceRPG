@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://oxgahervsye5"]
+
+[ext_resource type="Script" path="res://scripts/monster.gd" id="1_uvylv"]
+[ext_resource type="Texture2D" uid="uid://i7so2hti7iky" path="res://assets/graphics/pets/Carnero.png" id="2_colla"]
+
+[node name="Carnero" type="Node2D"]
+script = ExtResource("1_uvylv")
+name_monster = "Carnero"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_colla")

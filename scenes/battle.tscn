@@ -1,0 +1,185 @@
+[gd_scene load_steps=12 format=3 uid="uid://dc7xv2nha1ns7"]
+
+[ext_resource type="Script" path="res://scripts/battle.gd" id="1_7buex"]
+[ext_resource type="Texture2D" uid="uid://bkem6d4evdp2r" path="res://assets/graphics/battle/spr_battle_empty.png" id="1_iw3ds"]
+[ext_resource type="Theme" uid="uid://c75v78c5356j" path="res://resources/game_theme.tres" id="2_pl7km"]
+[ext_resource type="PackedScene" uid="uid://djxtyardgjynn" path="res://scenes/lince.tscn" id="2_v11ay"]
+[ext_resource type="PackedScene" uid="uid://oxgahervsye5" path="res://scenes/carnero.tscn" id="3_c48s7"]
+[ext_resource type="AudioStream" uid="uid://cy5fv3ntuowmm" path="res://assets/audio/music/battle.ogg" id="6_44kh4"]
+[ext_resource type="AudioStream" uid="uid://cmvqwsv5f5guq" path="res://assets/audio/sfx/pickup.wav" id="7_db27v"]
+[ext_resource type="AudioStream" uid="uid://35v3wust2ji1" path="res://assets/audio/music/win.ogg" id="8_7yrr0"]
+
+[sub_resource type="Animation" id="Animation_bs464"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextBox/Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_gig20"]
+resource_name = "show_message"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextBox/Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v8i35"]
+_data = {
+"RESET": SubResource("Animation_bs464"),
+"show_message": SubResource("Animation_gig20")
+}
+
+[node name="Battle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7buex")
+player_mons_scene = ExtResource("2_v11ay")
+enemy_mons_scene = ExtResource("3_c48s7")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_iw3ds")
+
+[node name="PlayerMonsPos" type="Marker2D" parent="."]
+position = Vector2(76, 74)
+
+[node name="EnemyMosPos" type="Marker2D" parent="."]
+position = Vector2(179, 45)
+
+[node name="TextBox" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 115.0
+offset_right = 143.0
+offset_bottom = 134.0
+
+[node name="Label" type="Label" parent="TextBox"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("2_pl7km")
+autowrap_mode = 3
+clip_text = true
+
+[node name="Player_Info" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 157.0
+offset_top = 82.0
+offset_right = 254.0
+offset_bottom = 106.0
+
+[node name="ProgressBar" type="ProgressBar" parent="Player_Info"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 9.0
+offset_right = 92.0
+offset_bottom = 14.0
+theme = ExtResource("2_pl7km")
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="Player_Info"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -3.0
+offset_right = 48.0
+offset_bottom = 13.0
+theme = ExtResource("2_pl7km")
+text = "Name"
+
+[node name="Enemy_Info" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 9.0
+offset_top = 5.0
+offset_right = 106.0
+offset_bottom = 29.0
+
+[node name="ProgressBar" type="ProgressBar" parent="Enemy_Info"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 9.0
+offset_right = 92.0
+offset_bottom = 14.0
+theme = ExtResource("2_pl7km")
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="Enemy_Info"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -3.0
+offset_right = 48.0
+offset_bottom = 13.0
+theme = ExtResource("2_pl7km")
+text = "Name"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v8i35")
+}
+
+[node name="Commands" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 148.0
+offset_top = 114.0
+offset_right = 251.0
+offset_bottom = 139.0
+
+[node name="Button" type="Button" parent="Commands"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 2.0
+offset_right = 41.0
+offset_bottom = 15.0
+theme = ExtResource("2_pl7km")
+text = "Fight"
+
+[node name="Button2" type="Button" parent="Commands"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 2.0
+offset_right = 92.0
+offset_bottom = 15.0
+theme = ExtResource("2_pl7km")
+text = "Exit"
+
+[node name="BattleMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_44kh4")
+autoplay = true
+
+[node name="AcceptSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_db27v")
+
+[node name="WinMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_7yrr0")
+
+[connection signal="focus_entered" from="Commands/Button" to="." method="_on_button_focus_entered"]
+[connection signal="focus_exited" from="Commands/Button" to="." method="_on_button_focus_exited"]
+[connection signal="pressed" from="Commands/Button" to="." method="_on_button_pressed"]
+[connection signal="focus_entered" from="Commands/Button2" to="." method="_on_button_2_focus_entered"]
+[connection signal="focus_exited" from="Commands/Button2" to="." method="_on_button_2_focus_exited"]
+[connection signal="pressed" from="Commands/Button2" to="." method="_on_button_2_pressed"]

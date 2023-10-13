@@ -35,6 +35,9 @@ func _ready():
 
 # called every frame
 func _physics_process(delta):
+	if Input.is_action_just_pressed("accept"):
+		get_tree().change_scene_to_file("res://scenes/battle.tscn")
+	
 	if player_state == PlayerState.TURNING:
 		return
 	elif is_moving == false:

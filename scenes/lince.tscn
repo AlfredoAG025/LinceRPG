@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://djxtyardgjynn"]
+
+[ext_resource type="Script" path="res://scripts/monster.gd" id="1_chuun"]
+[ext_resource type="Texture2D" uid="uid://ys6ea2srdiq" path="res://assets/graphics/pets/Lince.png" id="2_lvdcg"]
+
+[node name="Lince" type="Node2D"]
+script = ExtResource("1_chuun")
+name_monster = "Linxito"
+atk = 3
+def = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_lvdcg")

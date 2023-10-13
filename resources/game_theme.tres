@@ -1,0 +1,31 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://c75v78c5356j"]
+
+[ext_resource type="FontFile" uid="uid://bay2gk5emamvu" path="res://assets/fonts/pokemon_font.ttf" id="1_m0eo3"]
+[ext_resource type="StyleBox" uid="uid://d1g2hvbwvda7e" path="res://resources/stylebox_transparent.tres" id="2_mp0fd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ti82"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bud6u"]
+bg_color = Color(0.105882, 0.709804, 0.45098, 1)
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0.27451, 0, 0, 1)
+Button/font_sizes/font_size = 8
+Button/fonts/font = ExtResource("1_m0eo3")
+Button/styles/focus = ExtResource("2_mp0fd")
+Button/styles/hover = ExtResource("2_mp0fd")
+Button/styles/normal = ExtResource("2_mp0fd")
+Button/styles/pressed = ExtResource("2_mp0fd")
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 8
+Label/fonts/font = ExtResource("1_m0eo3")
+Label/styles/normal = SubResource("StyleBoxEmpty_8ti82")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_bud6u")
