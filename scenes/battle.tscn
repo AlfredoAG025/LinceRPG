@@ -1,49 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://dc7xv2nha1ns7"]
+[gd_scene load_steps=10 format=3 uid="uid://dc7xv2nha1ns7"]
 
 [ext_resource type="Script" path="res://scripts/battle.gd" id="1_7buex"]
 [ext_resource type="Texture2D" uid="uid://bkem6d4evdp2r" path="res://assets/graphics/battle/spr_battle_empty.png" id="1_iw3ds"]
 [ext_resource type="Theme" uid="uid://c75v78c5356j" path="res://resources/game_theme.tres" id="2_pl7km"]
 [ext_resource type="PackedScene" uid="uid://djxtyardgjynn" path="res://scenes/lince.tscn" id="2_v11ay"]
 [ext_resource type="PackedScene" uid="uid://oxgahervsye5" path="res://scenes/carnero.tscn" id="3_c48s7"]
+[ext_resource type="AnimationLibrary" uid="uid://c1jn6v011xkoq" path="res://resources/animations/battle_anim.res" id="6_2tmj0"]
 [ext_resource type="AudioStream" uid="uid://cy5fv3ntuowmm" path="res://assets/audio/music/battle.ogg" id="6_44kh4"]
 [ext_resource type="AudioStream" uid="uid://cmvqwsv5f5guq" path="res://assets/audio/sfx/pickup.wav" id="7_db27v"]
 [ext_resource type="AudioStream" uid="uid://35v3wust2ji1" path="res://assets/audio/music/win.ogg" id="8_7yrr0"]
-
-[sub_resource type="Animation" id="Animation_bs464"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextBox/Label:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-
-[sub_resource type="Animation" id="Animation_gig20"]
-resource_name = "show_message"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextBox/Label:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_v8i35"]
-_data = {
-"RESET": SubResource("Animation_bs464"),
-"show_message": SubResource("Animation_gig20")
-}
 
 [node name="Battle" type="Control"]
 layout_mode = 3
@@ -139,7 +104,7 @@ text = "Name"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_v8i35")
+"": ExtResource("6_2tmj0")
 }
 
 [node name="Commands" type="Control" parent="."]
